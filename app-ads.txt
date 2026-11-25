@@ -1,0 +1,5 @@
+# app-ads.txt: ad sellers authorised to sell ads in apps published by Wraithwick Studio.
+# Must be served at the root of the developer website listed in Google Play and the App Store.
+# Line format (Google AdMob help "Set up an app-ads.txt file for your app"):
+#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-2526837355670812, DIRECT, f08c47fec0942fa0

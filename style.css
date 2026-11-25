@@ -1,0 +1,220 @@
+/* Noir paper look of the game: a paper sheet on a dark wooden desk.
+   Colours are the app's AgencyTheme tokens (lib/app/agency_theme.dart).
+   Text contrast: ink on paper ≈ 13:1, muted ink ≈ 7:1, link red ≈ 7:1,
+   gold ink ≈ 6:1, paper on desk ≈ 11:1 (all above WCAG AA 4.5:1).
+   Lora is self-hosted (SIL OFL, fonts/Lora-OFL.txt), so the pages make no
+   third-party requests. */
+@font-face {
+  font-family: "Lora";
+  src: url("fonts/Lora.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("fonts/Lora-Italic.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --desk: #3f2819;
+  --desk-dark: #1f130b;
+  --paper: #eee7d7;
+  --paper-edge: #cdbf9f;
+  --ink: #20282d;
+  --muted-ink: #4e514d;
+  --gold: #c6a35d;
+  --gold-ink: #6b5427;
+  --stamp-ink: #8a2c1d;
+  --note: #f7efc9;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px 48px;
+  background-color: var(--desk);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(198, 163, 93, 0.18), transparent 60%),
+    repeating-linear-gradient(92deg, rgba(20, 11, 5, 0.35) 0 2px, transparent 2px 9px),
+    linear-gradient(180deg, var(--desk) 0%, var(--desk-dark) 100%);
+  color: var(--ink);
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.6;
+}
+
+.sheet {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 3px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 2px 0 rgba(0, 0, 0, 0.25);
+  overflow-wrap: break-word;
+}
+@media (min-width: 640px) {
+  body { padding-top: 48px; }
+  .sheet { padding: 48px 56px 56px; transform: rotate(-0.25deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet { transform: none; }
+}
+
+.brand {
+  margin: 0 0 4px;
+  color: var(--gold-ink);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+h1, h2, h3 { line-height: 1.25; color: var(--ink); }
+h1 { margin: 0 0 8px; font-size: 2rem; font-weight: 700; }
+h1::after {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: var(--gold);
+}
+h2 { margin: 40px 0 8px; font-size: 1.375rem; }
+h3 { margin: 24px 0 4px; font-size: 1.125rem; font-style: italic; }
+
+p, ul, ol, table { margin: 0 0 16px; }
+li { margin-bottom: 6px; }
+
+.meta { color: var(--muted-ink); font-style: italic; }
+
+a {
+  color: var(--stamp-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover, a:focus-visible { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid var(--gold-ink); outline-offset: 2px; }
+
+/* Planned features: labelled in words, never by colour alone. */
+.planned {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 8px;
+  border: 1px solid var(--gold-ink);
+  border-radius: 999px;
+  color: var(--gold-ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.note {
+  padding: 12px 16px;
+  background: var(--note);
+  border-left: 4px solid var(--gold-ink);
+}
+
+.toc { padding-left: 20px; columns: 2 220px; }
+
+.table-wrap { overflow-x: auto; margin: 0 0 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+th, td {
+  padding: 8px;
+  border-bottom: 1px solid var(--paper-edge);
+  text-align: left;
+  vertical-align: top;
+}
+
+nav.links { margin: 24px 0 0; }
+nav.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin: 0 8px 8px 0;
+  padding: 8px 20px;
+  border: 1px solid var(--gold-ink);
+  border-radius: 999px;
+  background: #f3ecdd;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+footer {
+  max-width: 760px;
+  margin: 24px auto 0;
+  color: var(--paper);
+  font-size: 1rem;
+  text-align: center;
+}
+footer a {
+  display: inline-block;
+  min-height: 48px;
+  padding: 12px 8px;
+  color: var(--paper);
+}
+
+/* Multi-app site (2026-11-18): language switch, app list, store badges, FAQ.
+   State is shown in words and weight, never by colour alone. */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 16px;
+  margin: 0 0 8px;
+}
+.topbar .brand { margin: 0; }
+.lang { margin: 0; }
+.lang a, .lang span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0 8px;
+  font-size: 1rem;
+}
+.lang [aria-current="page"] { font-weight: 700; color: var(--ink); text-decoration: none; }
+
+.app-list { list-style: none; padding: 0; }
+.app-card {
+  margin: 0 0 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--paper-edge);
+  border-left: 4px solid var(--gold-ink);
+  border-radius: 3px;
+  background: #f3ecdd;
+}
+.app-card h3 { margin-top: 0; font-style: normal; }
+.app-card p:last-child { margin-bottom: 0; }
+
+/* Store badges: labelled placeholders until the listings exist
+   (site/README.md → "Store badges"). */
+.badges { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 24px; padding: 0; list-style: none; }
+.badge {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 56px;
+  min-width: 200px;
+  padding: 8px 16px;
+  border: 2px dashed var(--gold-ink);
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.badge small { color: var(--muted-ink); font-weight: 400; font-style: italic; font-size: 1rem; }
+
+.faq h3 { margin-top: 28px; }
